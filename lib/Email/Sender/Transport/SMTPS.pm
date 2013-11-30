@@ -7,7 +7,7 @@ use MooX::Types::MooseLike::Base qw(Bool Int Str);
 use Email::Sender::Failure::Multi;
 use Email::Sender::Success::Partial;
 use Email::Sender::Util;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 has host => (is => 'ro', isa => Str,  default => sub { 'localhost' });
 has ssl  => (is => 'ro', isa => Str);
@@ -290,6 +290,25 @@ documentation.
     sasl_username => 'myaccount@gmail.com',
     sasl_password => 'mypassword',
   });
+
+=head2 send email with mandrillapp
+
+  my $transport = Email::Sender::Transport::SMTPS->new(
+    host => 'smtp.mandrillapp.com',
+    ssl  => 'starttls',
+    sasl_username => 'myaccount@blabla.com',
+    sasl_password => 'api_key',
+    helo => 'fayland.me',
+  );
+
+=head2 send with Amazon SES
+
+  my $transport = Email::Sender::Transport::SMTPS->new(
+    host => 'email-smtp.us-east-1.amazonaws.com',
+    ssl  => 'starttls',
+    sasl_username => 'xx',
+    sasl_password => 'zzz',
+  );
 
 =head1 AUTHOR
 
